@@ -8,9 +8,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import SEO from "../components/seo"
 
 import Header from "./header"
-import "./layout.css"
+import Footer from "./footer"
+// import "./layout.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -25,8 +27,20 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <SEO title="Home" />
+      {/* <div class="container-fluid">
+        <div class="row"> */}
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
+      <main>
+        {children}
+        
+      </main>
+      <Footer />
+      {/* </div>
+      </div>
+      */}
+
+      {/* <div
         style={{
           margin: `0 auto`,
           maxWidth: 960,
@@ -39,13 +53,13 @@ const Layout = ({ children }) => {
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
-      </div>
+      </div> */}
     </>
   )
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+// Layout.propTypes = {
+//   children: PropTypes.node.isRequired,
+// }
 
 export default Layout
