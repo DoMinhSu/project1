@@ -655,11 +655,16 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .sticky-header.sticky .dropdown_search {
   top: 157%;
 }
-
+header{
+  position: fixed;
+  width: 100%;
+  z-index: 99999999;
+}
 /*header css heer*/
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .main_header {
     padding: 30px 0 30px;
+    
   }
 }
 @media only screen and (max-width: 767px) {
@@ -1749,7 +1754,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
-  height: 674px;
+  /* height: 674px; */
 }
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
   .single_slider {
@@ -1823,10 +1828,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 .slider_content h1 {
-  font-size: 68px;
-  line-height: 68px;
+  /* font-size: 68px; */
+  /* line-height: 68px; */
   font-weight: 400;
   margin-bottom: 0;
+  font-size: 16px;
+  height: 30px;
+  overflow: hidden;
   color: #1e1e1f;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
@@ -1941,7 +1949,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   font-size: 13px;
   line-height: 43px;
   height: 45px;
-  padding: 0 35px;
+  padding: 0 10px;
+  text-align: center;
+  width: 100%;
+  text-align: center;
   background: #232323;
   color: #fff;
   border: 1px solid #232323;
@@ -10673,3 +10684,14 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 /*privacy policy css end*/
 
 /*# sourceMappingURL=style.css.map */
+main{
+  padding-top: 16rem;
+}
+.pagination-shop {
+  text-align: center;
+  cursor: pointer;
+}
+.pagination-shop  a{
+  display: inline;
+  padding: 1rem;
+}

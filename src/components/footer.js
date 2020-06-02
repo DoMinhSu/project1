@@ -198,8 +198,8 @@ export default function footer() {
                                             <div className="variants_selects">
                                                 <div className="variants_size">
                                                     <h2>size</h2>
-                                                    <select className="select_option">
-                                                        <option selected value={1}>s</option>
+                                                    <select className="select_option" defaultValue={1}>
+                                                        <option value={1}>s</option>
                                                         <option value={1}>m</option>
                                                         <option value={1}>l</option>
                                                         <option value={1}>xl</option>
@@ -208,8 +208,8 @@ export default function footer() {
                                                 </div>
                                                 <div className="variants_color">
                                                     <h2>color</h2>
-                                                    <select className="select_option">
-                                                        <option selected value={1}>purple</option>
+                                                    <select className="select_option" defaultValue={1}>
+                                                        <option value={1}>purple</option>
                                                         <option value={1}>violet</option>
                                                         <option value={1}>black</option>
                                                         <option value={1}>pink</option>
@@ -261,7 +261,7 @@ export default function footer() {
                                         <input type="text" defaultValue name="subscribe_pemail" id="subscribe_pemail" placeholder="Enter you email address here..." />
                                         <input type="hidden" defaultValue name="subscribe_pname" id="subscribe_pname" />
                                         <div id="notification" />
-                                        <a className="theme-btn-outlined" onclick="email_subscribepopup()"><span>Subscribe</span></a>
+                                        <a className="theme-btn-outlined"><span>Subscribe</span></a>
                                     </form>
                                     <div className="subscribe-bottom">
                                         <input type="checkbox" id="newsletter_popup_dont_show_again" />
