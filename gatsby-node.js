@@ -22,11 +22,10 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 //   }
 
 // }
-// video {
-//     file {
-//     url
-//     }
-// }
+
+// fluid{
+//     ...GatsbyContentfulFluid
+//   }
 exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
     const result = await graphql(`
@@ -46,24 +45,26 @@ exports.createPages = async ({ graphql, actions }) => {
                         }
                         content {
                             json
-                            internal {
-                            content
-                            }
                         }
 
                         image {
                             fluid {
-                              src
+                                src
                             }
-                          }
+                        }
+
+                        images {
+                            file {
+                                url
+                            }
+                        }
                     }
                 }
             }
         }
   `)
     const products = result.data.allContentfulProduct.edges
-    console.log(products);
-    
+
     products.forEach((node) => {
         createPage({
             path: node.node.slug,
@@ -71,7 +72,7 @@ exports.createPages = async ({ graphql, actions }) => {
             context: {
                 // Data passed to context is available
                 // in page queries as GraphQL variables.
-                product:node.node
+                product: node.node
             },
         })
 
@@ -81,12 +82,6 @@ exports.createPages = async ({ graphql, actions }) => {
             itemsPerPage: 2, // How many items you want per page
             pathPrefix: '/shop', // Creates pages like `/blog`, `/blog/2`, etc
             component: path.resolve('./src/templates/Shop.js'), // Just like `createPage()`
-            context: {
-                // Data passed to context is available
-                // in page queries as GraphQL variables.
-                limit:2,
-                skip:0
-            },
-          })
+        })
     })
 }

@@ -7,55 +7,55 @@ import Slides from '../components/index/Slides'
 import Shipping from '../components/index/Shipping'
 import Brand from '../components/index/Brand'
 import ListProducts from '../components/index/ListProducts'
-
+import Breadcrumb from './../components/common/breadcrumb'
 import { useStaticQuery, graphql } from 'gatsby'
 const Shop = (props) => {
-    const { pageContext } = props
+    const { data, pageContext } = props
     console.log(props);
-
-    const data = useStaticQuery(graphql`
-
-    query ($skip: Int, $limit: Int) {
-    allContentfulProduct(
-        sort: {fields: createdAt, order: DESC}
-        limit: $limit
-        skip: $skip
-
-    ) {
-        edges {
-            node {
-            name
-            price
-            promotionPrice
-            slug
-            id
-            image {
-                fluid {
-                src
-                }
-            }
-            createdAt
-            }
-        }
-    }
-  }
-  
-  `)
 
     return (
         <Layout>
-            <ListProducts title={"All Products"} data={data.allContentfulProduct.edges} />
+            <Breadcrumb category="All products" />
+            <ListProducts  data={data.allContentfulProduct.nodes} />
 
             <div className="pagination-shop">
-                <Link to={pageContext.previousPagePath}>Previous</Link>
-                {pageContext.humanPageNumber}
-                <Link to={pageContext.nextPagePath}>Next</Link>
+                {
+                    pageContext.humanPageNumber != 1 && <Link to={pageContext.previousPagePath}>Previous</Link>
+                }
+                Page {pageContext.humanPageNumber}
+                {
+                    pageContext.humanPageNumber != pageContext.numberOfPages && <Link to={pageContext.nextPagePath}>Next</Link>
+                }
+
             </div>
         </Layout>
     )
 }
 
 
+export const pageQuery = graphql`
+    query  ($skip: Int, $limit: Int) {
+        allContentfulProduct(
+            sort: {fields: createdAt, order: DESC}
+            limit: $limit
+            skip: $skip
 
+        ) {
+            nodes {
+                name
+                price
+                promotionPrice
+                slug
+                id
+                image {
+                    fluid{
+                        ...GatsbyContentfulFluid
+                      }
+                }
+            }
+        }
+  
+    }
+`
 
 export default Shop

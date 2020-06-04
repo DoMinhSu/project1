@@ -8,60 +8,39 @@ import Shipping from './../components/index/Shipping'
 import Brand from './../components/index/Brand'
 import ListProducts from '../components/index/ListProducts'
 import { useStaticQuery, graphql } from 'gatsby'
+import { orderBy } from 'lodash'
 const IndexPage = () => {
     const data = useStaticQuery(graphql`
-  query {
-        newestProduct : allContentfulProduct(sort: {fields: createdAt, order: DESC}, limit: 10) {
-            edges {
-                node {
-                    name
-                    price
-                    promotionPrice
-                    slug
-                    id
-                    image {
-                        fluid {
-                        src
+        query{
+                products : allContentfulProduct(sort: {fields: createdAt, order: DESC}) {
+                    nodes {
+                      id
+                      createdAt
+                      name
+                      price
+                      promotionPrice
+                      slug
+                      image {
+                        fluid{
+                          ...GatsbyContentfulFluid
                         }
+                      }
                     }
-                    content {
-                        json
-                    }
-                }
+                  }
             }
-        }
-        promotionProtion : allContentfulProduct(sort: {fields: createdAt, order: DESC}, limit: 10, filter: {promotionPrice: {gt: 0}}) {
-            edges {
-              node {
-                name
-                price
-                promotionPrice
-                slug
-                id
-                image {
-                    fluid {
-                        src
-                    }
-                }
-              }
-            }
-          }
-    }
-`)
+    `)
+    const {products} = data
+    console.log(products);
 
+    const newestProducts = orderBy(products.nodes, ['createdAt'], ['desc']).slice(0, 10)
+    const promotionProducts = products.nodes.filter(product => {
+        return product.promotionPrice > 0 
+    });
     return (
         <Layout>
+            <ListProducts title={"promotion Products"} data={promotionProducts} />
 
-            {/* <Image /> */}
-
-
-
-            {/* <Slides />
-    <Shipping/>
-    <FeatureProducts/>
-    <Brand/> */}
-            <ListProducts title={"Newest Products"} data={data.newestProduct.edges} />
-            <ListProducts title={"promotion Products"} data={data.promotionProtion.edges} />
+            <ListProducts title={"Newest Products"} data={newestProducts} /> 
         </Layout>
     )
 }

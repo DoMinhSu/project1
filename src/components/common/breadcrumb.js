@@ -7,7 +7,7 @@ export default function breadcrumb({ category }) {
                 <div className="row">
                     <div className="col-12">
                         <div className="breadcrumb_content">
-                            <h3>{category}</h3>
+                            {/* <h3>{category}</h3> */}
                             <ul>
                                 <li><a href="index.html">home</a></li>
                                 <li> {category}</li>

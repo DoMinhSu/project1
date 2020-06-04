@@ -655,11 +655,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .sticky-header.sticky .dropdown_search {
   top: 157%;
 }
-header{
-  position: fixed;
-  width: 100%;
-  z-index: 99999999;
-}
+
 /*header css heer*/
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .main_header {
@@ -10684,9 +10680,7 @@ header{
 /*privacy policy css end*/
 
 /*# sourceMappingURL=style.css.map */
-main{
-  padding-top: 16rem;
-}
+
 .pagination-shop {
   text-align: center;
   cursor: pointer;

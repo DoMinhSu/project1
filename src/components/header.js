@@ -29,7 +29,7 @@ const Header = ({ siteTitle }) => {
         <header>
             <div className="main_header">
                 <div className="header_top">
-                    <div className="container-fluid">
+                    <div className="container">
                         <div className="row align-items-center">
                             <div className="col-lg-5 col-md-5">
                                 <div className="header_contact_info">
@@ -77,11 +77,15 @@ const Header = ({ siteTitle }) => {
                               <li><a href="index-4.html">Home shop 4</a></li>
                             </ul> */}
                 <div className="header_middle sticky-header">
-                    <div className="container-fluid">
+                    <div className="container">
                         <div className="row align-items-center">
                             <div className="col-lg-2 col-md-3 offset-md-5 offset-lg-0 col-5 offset-3 col-sm-5">
                                 <div className="logo">
-                                    <Link to="/"><img src="assets/img/logo/logo.png" alt="" /></Link>
+                                    <Link to="/">
+                                        <img 
+                                            src="assets/img/logo/logo.png" alt="logos" 
+                                        />
+                                    </Link>
                                 </div>
                             </div>
                             <div className="col-lg-8">
@@ -121,8 +125,8 @@ const Header = ({ siteTitle }) => {
                       } */}
 
 
-                                            <li><a href="contact.html"> Contact Us</a></li>
-                                            <li><a href="about.html"> About us</a></li>
+                                            <li><Link to="/contact"> Contact Us</Link></li>
+                                            <li><Link to="/about"> About us</Link></li>
 
                                         </ul>
                                     </nav>

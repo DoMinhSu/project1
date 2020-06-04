@@ -2,6 +2,7 @@ import React from 'react'
 import Slider from "react-slick";
 import Slides from './Slides'
 import { Link, useStaticQuery, graphql } from 'gatsby'
+import Img from "gatsby-image/withIEPolyfill"
 export default function ListProducts({ title, data }) {
     const settings = {
         dots: false,
@@ -13,6 +14,7 @@ export default function ListProducts({ title, data }) {
         slidesToShow: 4,
         slidesToScroll: 1
     };
+    console.log(data);
 
     return (
         <div className="product_area  mb-95">
@@ -29,30 +31,37 @@ export default function ListProducts({ title, data }) {
                     {
                         data.map((item, i) => {
                             return (
-                                <div className="col-lg-3">
+                                <div className="col-lg-3" key={item.id}>
                                     <div className="product_items">
                                         <article className="single_product">
                                             <figure>
                                                 <div className="product_thumb">
-                                                    <a className="primary_img" href="product-details.html"><img src={item.node.image.fluid.src} alt="" /></a>
-                                                    {/* <a className="secondary_img" href="product-details.html"><img src="assets/img/product/product6.jpg" alt="" /></a> */}
-                                                    {/* <div className="label_product">
-                                                        <span className="label_sale">-20%</span>
-                                                    </div> */}
+                                                    <Link to={`/${item.slug}`} className="primary_img" href="product-details.html">
+                                                        {/* <img src={item.image.fixed.base64} alt="" /> */}
+                                                        <Img
+                                                            fluid={item.image.fluid}
+                                                            objectFit="cover"
+                                                            objectPosition="50% 50%"
+                                                            alt=""
+                                                        />
+                                                    </Link>
                                                     <div className="action_links">
                                                         <ul>
-                                                            <li className="add_to_cart"><a href="cart.html" title="Add tob cart"><i className="icon-bag icons" /></a></li>
+                                                            {/* <li className="add_to_cart"><a href="cart.html" title="Add tob cart"><i className="icon-bag icons" /></a></li>
                                                             <li className="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i className="icon-heart icons" /></a></li>
-                                                            <li className="compare"><a href="#" title="Add to Compare"><i className="icon-shuffle icons" /></a></li>
-                                                            <li className="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="quick view"> <i className="icon-eye icons" /></a></li>
+                                                            <li className="compare"><a href="#" title="Add to Compare"><i className="icon-shuffle icons" /></a></li> */}
+                                                            <li className="quick_button"><Link to={`/${item.slug}`} data-toggle="modal" data-target="#modal_box" title="Quick view"> <i className="icon-eye icons" /></Link></li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                                 <figcaption className="product_content">
-                                                    <h4 className="product_name"><Link to={`/${item.node.slug}`}>{item.node.name}</Link></h4>
+                                                    <h4 className="product_name"><Link to={`/${item.slug}`}>{item.name}</Link></h4>
                                                     <div className="price_box">
-                                                        <span className="old_price">${item.node.price}</span>
-                                                        <span className="current_price">${item.node.promotionPrice}</span>
+                                                        <span className={item.promotionPrice ? "old_price" : "current_price"}>${item.price}</span>
+                                                        {
+                                                            item.promotionPrice && <span className="current_price">${item.promotionPrice}</span>
+                                                        }
+
                                                     </div>
                                                     {/* <div className="product_rating">
                                                         <ul>
