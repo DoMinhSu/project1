@@ -962,11 +962,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 
-@media only screen and (max-width: 767px) {
+/* @media only screen and (max-width: 767px) {
   .logo {
     text-align: center;
   }
-}
+} */
 @media only screen and (max-width: 767px) {
   .logo img {
     max-width: 100px;
@@ -997,23 +997,17 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     padding: 0;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .header_middle .col-lg-8 {
-    display: none;
-  }
+.col-xs-6{
+  width: 50%;
 }
-@media only screen and (max-width: 767px) {
-  .header_middle .col-lg-8 {
-    display: none;
-  }
-}
+
 
 /* 2.4 main menu css here */
 .menu_position {
   position: relative;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+/* @media only screen and (min-width: 768px) and (max-width: 991px) {
   .main_menu {
     display: none;
   }
@@ -1022,10 +1016,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   .main_menu {
     display: none;
   }
-}
+} */
 .main_menu nav > ul {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 .main_menu nav > ul > li {
   position: relative;
@@ -10688,4 +10682,48 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .pagination-shop  a{
   display: inline;
   padding: 1rem;
+}
+
+
+/* menu  custom*/
+.icon-menu {
+  display: none;
+}
+
+/* here */
+@media only screen and (max-width: 991px) {
+  .icon-menu {
+    display: inline
+    
+  }
+  .main_menu>nav>ul>li {
+    /* display: none; */
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+  .header_middle .col-lg-10 {
+    text-align: right;
+    position: relative;
+  }
+  .main_menu {
+    position: absolute;
+    display: none;
+    right: 0;
+    z-index: 99999999999;
+    background-color: #fff;
+    box-shadow: 0px 5px 20px 0px rgba(69, 67, 96, 0.1);
+  }
+  .main_menu.active{
+    display: block;
+  }
+
+  .main_menu nav > ul{
+    display:block !important;
+    padding: 0;
+  }
+  .main_menu nav > ul li{
+    text-align: center;
+    padding: 0 20px;
+  }
 }

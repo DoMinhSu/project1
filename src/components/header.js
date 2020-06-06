@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import React from "react"
+import React,{useRef} from "react"
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import slugify from 'slugify'
 const Header = ({ siteTitle }) => {
@@ -24,7 +24,12 @@ const Header = ({ siteTitle }) => {
     //     }
     //   `
     // )
-
+    const menu = useRef();
+    console.log();
+    
+   function openMenu(){
+    menu.current.classList.toggle("active")
+    }
     return (
         <header>
             <div className="main_header">
@@ -79,7 +84,7 @@ const Header = ({ siteTitle }) => {
                 <div className="header_middle sticky-header">
                     <div className="container">
                         <div className="row align-items-center">
-                            <div className="col-lg-2 col-md-3 offset-md-5 offset-lg-0 col-5 offset-3 col-sm-5">
+                            <div className="col-xs-6 col-lg-2">
                                 <div className="logo">
                                     <Link to="/">
                                         <img 
@@ -88,9 +93,14 @@ const Header = ({ siteTitle }) => {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="col-lg-8">
+                            <div className="col-xs-6 col-lg-10">
+                                <div className="icon-menu" onClick={openMenu}>
+                                    <div className="icon-menu-item"></div>
+                                    <div className="icon-menu-item"></div>
+                                    <div className="icon-menu-item"></div>
+                                </div>
                                 {/*main menu start*/}
-                                <div className="main_menu">
+                                <div className="main_menu" ref={menu}>
                                     <nav>
                                         <ul>
                                             <li><Link activeClassName="active" to="/">

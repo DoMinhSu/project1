@@ -276,7 +276,7 @@ export default function footer() {
                 </div>
                 {/* /.box */}
             </div>
-            <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
+            {/* <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
             <script src="assets/js/popper.js"></script>
             <script src="assets/js/bootstrap.min.js"></script>
             <script src="assets/js/owl.carousel.min.js"></script>
@@ -290,7 +290,7 @@ export default function footer() {
             <script src="assets/js/slinky.menu.js"></script>
             <script src="assets/js/plugins.js"></script>
 
-            <script src="assets/js/main.js"></script>
+            <script src="assets/js/main.js"></script> */}
         </div>
     )
 }

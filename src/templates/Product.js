@@ -12,7 +12,8 @@ import Gallery from '../components/common/Gallery'
 export default function Product(props) {
     const { pageContext } = props
     const { product } = pageContext
-    console.log(props);
+    const ratioVideo =
+        console.log(props);
     const options = {
         renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: (node) => {
@@ -43,21 +44,38 @@ export default function Product(props) {
                     const lastIndex = data.uri.lastIndexOf('/')
                     const videoId = data.uri.slice(lastIndex);
                     return (
-                        <iframe style={{ maxWidth: "1120px0", display: "block", margin: "0 auto" }} src={`https://www.youtube.com/embed${videoId}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div
+                            style={{
+                                position: "relative",
+                                paddingBottom: "56.25%",
+                                height: "0",
+                                overflow: "hidden",
+                            }}>
+                            <iframe style={{
+                                display: "block",
+                                margin: "0 auto",
+                                position: "absolute",
+                                top: "0",
+                                left: "0",
+                                width: "100%",
+                                height: "100%",
+                            }}
+                                src={`https://www.youtube.com/embed${videoId}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     )
                 }
             },
 
         },
     };
-    const items = product.images?.map((item)=>{
+    const items = product.images?.map((item) => {
         return {
-            original : item.file.url,
-            thumbnail : item.file.url,
-            fullscreen : item.file.url,
+            original: item.file.url,
+            thumbnail: item.file.url,
+            fullscreen: item.file.url,
         }
     }) || [];
-console.log(product);
+    console.log(product);
 
     return (
         <Layout>
@@ -71,7 +89,7 @@ console.log(product);
                                 <div className="product-details-tab">
                                     <div id="img-1" className="zoomWrapper single-zoom">
                                         {/* <img src={product.image.fluid.src} /> */}
-                                        <Gallery items={items}/>
+                                        <Gallery items={items} />
 
                                     </div>
                                 </div>
